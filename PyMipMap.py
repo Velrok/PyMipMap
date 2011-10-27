@@ -66,8 +66,13 @@ def main(argv):
 			
 		g = Generator.Generator(input_image)
 		g.set_stop_size(stop_size)
+		
 		if(max_depth):
 			g.max_depth = int(max_depth)
+			
+		if(tile_size):
+			g.tile_size = int(tile_size)
+			
 		g.generate( output_dir, output_image_prefix, output_postfix )
 		
 	except getopt.GetoptError:
