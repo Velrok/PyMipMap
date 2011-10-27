@@ -54,12 +54,8 @@ class Generator(object):
 			
 			print size
 			
-			print "creating in memory copy of input image"
-			img = input_img.copy()
-			print "creating in memory copy of input image DONE"
-			
 			print "creating thumbnail"
-			img.thumbnail(size, Image.ANTIALIAS)
+			input_img.thumbnail(size, Image.ANTIALIAS)
 			print "creating thumbnail DONE"
 			
 			save_as = str(output_dir + "/" + output_filename + "L" + str(level))
@@ -69,24 +65,29 @@ class Generator(object):
 			if(self.should_create_tiles()):
 				print "save thumbnail as tiles"
 				# create tiles
+				
+				total_tile_count = (size[1] / float(self.tile_size)) * (size[0] / float(self.tile_size))
+				
 				for y in range(0, size[1], self.tile_size):
 					for x in range(0, size[0], self.tile_size):
 						box = (x, y, x + self.tile_size, y + self.tile_size)
 						
 						# print "creating tail " + str(tile_cound)
-						tile_image = img.crop(box)
+						tile_image = input_img.crop(box)
 						# print "creating tail " + str(tile_cound) + " DONE"
 						
 						filename = save_as + "T" + str(tile_cound) + file_extention
 						tile_image.save(filename, output_posfix)
-						print filename + " SAVED"
+						
+						progress = (float(tile_cound) / float(total_tile_count)) * 100
+						print filename + " SAVED " + str(int(progress)) + " % level progress"
 						
 						del tile_image
 						
 						tile_cound = tile_cound + 1
 			else:
 				# we don't need to create tiles so just save this new mipmap level
-				img.save(save_as + file_extention, output_posfix)
+				input_img.save(save_as + file_extention, output_posfix)
 			
 			size = ( size[0] / 2, size[1] / 2 )
 			level = level + 1
