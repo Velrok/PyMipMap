@@ -13,3 +13,11 @@ All listet libraries are required, but may work with older versions.
 # Installation
 
 Simple python file. Just copy it into a place it can be called.
+
+
+# Bugreporting
+
+If you find any bug feel free to report it at github.com https://github.com/Velrok/PyMipMap/issues .
+
+Or fork the project and send the fix via pull request.
+
