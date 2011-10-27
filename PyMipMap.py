@@ -7,7 +7,7 @@ def usage():
 	print """
 Usage: PyMipMap [OPTIONS]
   -h --help                   Prints this help.
-
+  
   -i <input_image>            REQUIRED
   -d <output_dir>             uses working dir as default value
   -o <output_image_prefix>    REQUIRED filename base of the output image

@@ -68,7 +68,9 @@ class Generator(object):
 				
 				total_tile_count = (size[1] / float(self.tile_size)) * (size[0] / float(self.tile_size))
 				
+				yi = 0
 				for y in range(0, size[1], self.tile_size):
+					xi = 0
 					for x in range(0, size[0], self.tile_size):
 						box = (x, y, x + self.tile_size, y + self.tile_size)
 						
@@ -76,7 +78,7 @@ class Generator(object):
 						tile_image = input_img.crop(box)
 						# print "creating tail " + str(tile_cound) + " DONE"
 						
-						filename = save_as + "T" + str(tile_cound) + file_extention
+						filename = save_as + "T" + str(yi) + "_" + str(xi) + file_extention
 						tile_image.save(filename, output_posfix)
 						
 						progress = (float(tile_cound) / float(total_tile_count)) * 100
@@ -85,6 +87,8 @@ class Generator(object):
 						del tile_image
 						
 						tile_cound = tile_cound + 1
+						xi = xi + 1
+					yi = yi + 1
 			else:
 				# we don't need to create tiles so just save this new mipmap level
 				input_img.save(save_as + file_extention, output_posfix)
