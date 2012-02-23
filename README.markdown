@@ -1,3 +1,8 @@
+# Project discontinued!
+
+You may want to take a look at [gdal 2 tiles](http://www.gdal.org/gdal2tiles.html).
+
+
 # Requires
 
 I tested my work with the following versions.
